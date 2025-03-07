@@ -1,0 +1,208 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  username String @unique
+  email String? @unique 
+  password String
+  role Role @default(READER)
+}
+
+enum Role {
+  EDITOR
+  ADMIN
+  READER
+}
+
+model Proveedor {
+  id Int @id @default(autoincrement())
+  nombre String @unique
+  Pedido Pedido[]
+
+  Ingreso Ingreso[]
+}
+
+model Remito {
+  id Int @id @default(autoincrement())
+  fecha DateTime
+  peso Float
+  ingreso Ingreso[]
+}
+
+model Ingreso {
+  id Int @id @default(autoincrement())
+  proveedorId Int
+  proveedor Proveedor @relation(references: [id], fields: [proveedorId])
+  fuente_controlada Boolean
+  fecha DateTime
+  chofer String
+  patente String
+  remitoId Int
+  remito Remito @relation(references: [id], fields: [remitoId])
+
+
+  equipo Equipo[]
+}
+
+model Pedido {
+  id Int @id @default(autoincrement())
+  fecha DateTime
+  equipos Equipo[]
+  proveedorId Int
+  proveedor Proveedor @relation(references: [id], fields: [proveedorId], onDelete: Cascade)
+}
+
+
+model Posicion {
+  id Int @id @default(autoincrement())
+  identificador Int @unique
+  ocupado Boolean
+
+  equipoId Int? @unique
+  equipo Equipo? @relation(fields: [equipoId], references: [id])
+}
+
+model Equipo {
+  posicion Posicion?
+  id Int @id @default(autoincrement())
+  pedidoId Int?
+  pedido Pedido? @relation(fields: [pedidoId], references: [id], onDelete: Cascade)
+  rollisoId Int? 
+  rolliso Rolliso? @relation(references: [id], fields: [rollisoId])
+
+  ingresoId Int?
+  ingreso Ingreso? @relation(references: [id], fields: [ingresoId])
+
+  Consumo Consumo?
+}
+
+model Rolliso {
+  id Int @id @default(autoincrement())
+  diametro Decimal
+  longitud Decimal
+  tipo String 
+  //equipoId Int?
+  @@unique([tipo, diametro, longitud])
+  Equipo Equipo[]
+}
+
+model PlanProduccion {
+  id Int @id @default(autoincrement())
+  fecha_inicio DateTime
+  fecha_fin DateTime
+  esquemaId Int
+  activo Boolean @default(true)
+
+  ordenProd OrdenProd[]
+  esquema EsquemaCorte @relation(references: [id], fields: [esquemaId])
+
+  Consumo Consumo[]
+}
+
+model Consumo {
+  id Int @id @default(autoincrement())
+  fecha DateTime
+
+  planId Int
+  plan PlanProduccion @relation(references: [id], fields: [planId])
+  equipoId Int @unique
+  equipo Equipo @relation(references: [id], fields: [equipoId])
+}
+
+model OrdenProd {
+  id Int @id @default(autoincrement())
+  numero String @unique
+  volumen Float
+
+  cabadoId Int
+  clienteId Int
+  cabado CabadoMadera @relation(references: [id], fields: [cabadoId])
+  cliente Cliente @relation(references: [id], fields: [clienteId])
+
+  planId Int?
+  plan PlanProduccion? @relation(references: [id], fields: [planId], onDelete:SetNull)
+
+  paqueteId Int?
+  Paquete Paquete ? @relation(references: [id], fields: [paqueteId], onDelete: SetNull)
+}
+
+model CabadoMadera{
+  id Int @id @default(autoincrement())
+
+  nombre String @unique
+
+
+  OrdenProd OrdenProd[]
+}
+
+model Cliente {
+  id Int @id @default(autoincrement())
+  nombre String
+  numero String @unique
+
+  OrdenProd OrdenProd[]
+}
+
+model EsquemaCorte {
+  id Int @id @default(autoincrement())
+  longitud Float
+  ancho Float
+  espesor Float
+
+  plan PlanProduccion[]
+
+  @@unique([longitud, ancho, espesor])
+
+}
+
+model Estado {
+  id Int @id @default(autoincrement())
+  value String @unique
+
+  Paquete Paquete[]
+}
+
+model Paquete {
+  id Int @id @default(autoincrement())
+  identificador String @unique
+  vol Decimal
+
+  orden OrdenProd[]
+  estadoId Int
+  estado Estado @relation(fields: [estadoId], references: [id])
+
+  piezaId Int
+  pieza Pieza @relation(fields: [piezaId], references: [id])
+}
+
+model Pieza {
+  id Int @id @default(autoincrement())
+  volumen Decimal
+  espesor Decimal
+  longitud Decimal
+  ancho Decimal
+
+  escuadriaId Int ? 
+  escuadria Escuadria ? @relation(fields: [escuadriaId], references: [id])
+
+  Paquete Paquete[]
+}
+
+model Escuadria {
+  id Int @id @default(autoincrement())
+  longitud Decimal
+  altura Decimal
+  ancho Decimal
+
+  @@unique([longitud, altura, ancho])
+
+  Pieza Pieza[]
+}
