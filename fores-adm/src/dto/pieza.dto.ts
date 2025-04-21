@@ -26,5 +26,5 @@ export class CreatePiezaDto {
   @ApiProperty()
   @IsInt()
   @IsOptional()
-  escuadriaId: number;
+  escuadriaId?: number;
 }

@@ -1,3 +1,4 @@
+import { JwtAuthGuard } from 'src/bussiness/auth/jwt.guard';
 import {
   ChangeStatusDto,
   CreatePlanRequestControllerDto,
@@ -9,6 +10,7 @@ import {
   Param,
   ParseIntPipe,
   Post,
+  UseGuards,
   ValidationPipe,
 } from '@nestjs/common';
 import { PlanBussiness } from 'src/bussiness/plan_produccion/plan.bussines';
@@ -21,7 +23,7 @@ import { ResponseInterface } from 'src/interfaces/response.interface';
 @Controller('plan')
 export class PlanController {
   constructor(private readonly planBussiness: PlanBussiness) {}
-
+  @UseGuards(JwtAuthGuard)
   @Post('change/status/:id')
   public async changeStatus(
     @Param('id', ParseIntPipe) id,
@@ -29,7 +31,7 @@ export class PlanController {
   ): Promise<ResponseInterface<{ message: string }>> {
     return await this.planBussiness.changeStatus(data.value, id);
   }
-
+  @UseGuards(JwtAuthGuard)
   @Post('create')
   public async createPlan(
     @Body(new ValidationPipe()) data: CreatePlanRequestControllerDto,
@@ -38,12 +40,12 @@ export class PlanController {
   > {
     return await this.planBussiness.createPlan(data);
   }
-
+  @UseGuards(JwtAuthGuard)
   @Get('list')
   public async list(): Promise<ResponseInterface<IPlanProduccion[]>> {
     return await this.planBussiness.list();
   }
-
+  @UseGuards(JwtAuthGuard)
   @Get('detail/:id')
   public async detailPlan(
     @Param('id', ParseIntPipe) id,

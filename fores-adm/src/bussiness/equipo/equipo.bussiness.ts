@@ -14,7 +14,6 @@ export class EquiposBussiness extends ResponseClass {
   public async listEquipoStock(): Promise<ResponseInterface<IEquipoStock[]>> {
     try {
       const equipos = await this.equipoService.listEquipoStock();
-      console.log(equipos);
       if (!equipos)
         return this.badRequest('Error al intentar obtener el stock de equipos');
       return this.success(equipos);

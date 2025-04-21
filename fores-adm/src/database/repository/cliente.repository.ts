@@ -37,16 +37,12 @@ export class ClienteRepository {
 
   public async findClienteByNumero(numero: string): Promise<Cliente | null> {
     try {
-      const cli = await this.prisma.cliente.findUnique({
+      return await this.prisma.cliente.findUnique({
         where: {
           numero,
         },
       });
-
-      console.log(cli);
-      return cli;
-    } catch (error) {
-      console.log(error);
+    } catch {
       return null;
     }
   }

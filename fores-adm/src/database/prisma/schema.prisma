@@ -130,8 +130,7 @@ model OrdenProd {
   planId Int?
   plan PlanProduccion? @relation(references: [id], fields: [planId], onDelete:SetNull)
 
-  paqueteId Int?
-  Paquete Paquete ? @relation(references: [id], fields: [paqueteId], onDelete: SetNull)
+  Paquete Paquete[]
 }
 
 model CabadoMadera{
@@ -174,13 +173,16 @@ model Paquete {
   id Int @id @default(autoincrement())
   identificador String @unique
   vol Decimal
-
-  orden OrdenProd[]
+  ingreso DateTime @default(now())
+  ordenId Int ?
+  orden OrdenProd ? @relation(fields: [ordenId], references: [id])
   estadoId Int
   estado Estado @relation(fields: [estadoId], references: [id])
 
   piezaId Int
   pieza Pieza @relation(fields: [piezaId], references: [id])
+
+  CicloSecado CicloSecado ?
 }
 
 model Pieza {
@@ -205,4 +207,12 @@ model Escuadria {
   @@unique([longitud, altura, ancho])
 
   Pieza Pieza[]
+}
+
+model CicloSecado {
+  id Int @id @default(autoincrement())
+  ingreso DateTime @default(now())
+  egreso DateTime ? 
+  paqueteId Int ? @unique
+  paquete Paquete ? @relation(fields: [paqueteId], references: [id])
 }

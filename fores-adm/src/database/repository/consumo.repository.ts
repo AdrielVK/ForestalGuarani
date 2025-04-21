@@ -102,8 +102,7 @@ export class ConsumoRepository {
           },
         },
       });
-    } catch (error) {
-      console.error('Error en findById:', error);
+    } catch {
       return null;
     }
   }

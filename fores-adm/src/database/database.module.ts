@@ -14,6 +14,11 @@ import { ClienteRepository } from './repository/cliente.repository';
 import { EsquemaRepository } from './repository/esquema.repository';
 import { PlanRepository } from './repository/plan.repository';
 import { ConsumoRepository } from './repository/consumo.repository';
+import { EstadoRepository } from './repository/estado.repository';
+import { EscuadriaRepository } from './repository/escuadria.repository';
+import { PiezaRepository } from './repository/pieza.repository';
+import { PaqueteRepository } from './repository/paquete.repository';
+import { CicloRepository } from './repository/ciclo.repository';
 
 const provider = [
   Prisma,
@@ -32,6 +37,13 @@ const provider = [
   EsquemaRepository,
   PlanRepository,
   ConsumoRepository,
+
+  EstadoRepository,
+  EscuadriaRepository,
+  PiezaRepository,
+  PaqueteRepository,
+
+  CicloRepository,
 ];
 
 @Module({

@@ -9,7 +9,6 @@ export class ProveedorService {
   public async getOrCreateProveedor(name: string): Promise<IProveedor> {
     try {
       const prov = await this.proveedorRepository.findByName(name);
-      console.log(prov);
       let response: IProveedor;
 
       if (!prov) {

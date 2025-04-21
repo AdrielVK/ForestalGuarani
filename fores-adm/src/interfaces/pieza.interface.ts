@@ -1,4 +1,5 @@
 import { Decimal } from '@prisma/client/runtime/library';
+import { IEscuadria } from './escuadria.interface';
 
 export interface IPieza {
   id: number;
@@ -7,4 +8,5 @@ export interface IPieza {
   longitud: Decimal;
   ancho: Decimal;
   escuadriaId?: number;
+  escuadria?: IEscuadria;
 }

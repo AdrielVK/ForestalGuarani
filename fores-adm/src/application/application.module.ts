@@ -9,6 +9,9 @@ import { EquipoController } from './equipo.controller';
 import { OrdenController } from './orden.controller';
 import { PlanController } from './plan.controller';
 import { ConsumoController } from './consumo.controller';
+import { PaqueteController } from './paquete.controller';
+import { CicloController } from './ciclo.controller';
+import { EstadoController } from './estado.controller';
 
 @Module({
   imports: [BussinessModule],
@@ -22,6 +25,9 @@ import { ConsumoController } from './consumo.controller';
     EquipoController,
     PlanController,
     ConsumoController,
+    PaqueteController,
+    CicloController,
+    EstadoController,
   ],
 })
 export class ApplicationModule {}

@@ -64,7 +64,6 @@ export class OrdenRepository {
           id,
         },
       });
-      console.log('asdasd', deleted);
       if (!deleted) return null;
 
       return 'Orden eliminada';
@@ -107,6 +106,32 @@ export class OrdenRepository {
       return await this.prisma.ordenProd.findMany({
         where: {
           planId: null,
+        },
+        include: {
+          cabado: true,
+          cliente: true,
+        },
+      });
+    } catch {
+      return null;
+    }
+  }
+
+  public async listOrdenesFreeOfPaquete(): Promise<
+    Prisma.OrdenProdGetPayload<{
+      include: {
+        cabado: true;
+        cliente: true;
+      };
+    }>[]
+    // eslint-disable-next-line prettier/prettier
+    > {
+    try {
+      return await this.prisma.ordenProd.findMany({
+        where: {
+          Paquete: {
+            none: {},
+          },
         },
         include: {
           cabado: true,

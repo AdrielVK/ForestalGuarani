@@ -34,7 +34,6 @@ export class OrdenBussiness extends ResponseClass {
   ): Promise<ResponseInterface<{ message: string }>> {
     try {
       const response = await this.ordenService.deleteOrden(id);
-      console.log('holaa', response);
       if (!response) return this.badRequest('Error al eliminar la orden');
 
       return this.success({ message: response });
@@ -46,6 +45,20 @@ export class OrdenBussiness extends ResponseClass {
   public async listOrdenesFree(): Promise<ResponseInterface<IOrden[]>> {
     try {
       const res = await this.ordenService.listOrdenesFree();
+      if (!res)
+        return this.badRequest('Error al intentar obtener la lista de ordenes');
+      return this.success(res);
+    } catch {
+      return this.badRequest('Error al intentar obtener la lista de ordenes');
+    }
+  }
+
+  public async listOrdenesFreeOfPaquete(): Promise<
+    ResponseInterface<IOrden[]>
+    // eslint-disable-next-line indent
+  > {
+    try {
+      const res = await this.ordenService.listOrdenesFreeOfPaquete();
       if (!res)
         return this.badRequest('Error al intentar obtener la lista de ordenes');
       return this.success(res);

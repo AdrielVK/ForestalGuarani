@@ -72,8 +72,7 @@ export class OrdenBuilder {
       };
 
       return this;
-    } catch (error) {
-      console.log('errorrr', error);
+    } catch {
       return null;
     }
   }

@@ -31,7 +31,6 @@ export class PedidoService {
   public async listPedidosByDate(): Promise<IPedidoEquipo[] | null> {
     try {
       const list = await this.pedidoRepository.listCompletePedidoByDate();
-      console.log(list);
       if (!list) return null;
 
       const response: IPedidoEquipo[] = list.map((pedido) => ({

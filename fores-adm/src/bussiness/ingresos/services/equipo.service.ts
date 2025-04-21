@@ -14,7 +14,6 @@ export class EquipoService {
   public async listEquipoStock(): Promise<IEquipoStock[]> {
     try {
       const list = await this.equipoRepository.listEquiposStock();
-      console.log('list', list);
       if (!list) return null;
 
       return list.map((equipo) => ({

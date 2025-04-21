@@ -71,9 +71,7 @@ export class EquipoBuilder {
         };
 
         const rolliso = await this.setRolliso(rollisoData);
-        console.log('rolliso');
-        console.log(rolliso);
-        console.log('rolliso');
+
         await this.equipoRepository.associateEquipoToRolliso(
           equipoBase.id,
           rolliso.id,

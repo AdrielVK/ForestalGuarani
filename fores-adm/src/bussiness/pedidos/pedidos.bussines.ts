@@ -48,8 +48,7 @@ export class PedidosBussiness extends ResponseClass {
       } else {
         return this.badRequest('Error al crear un pedido');
       }
-    } catch (error) {
-      console.log(error);
+    } catch {
       return this.badRequest('Error al crear un pedido');
     }
   }

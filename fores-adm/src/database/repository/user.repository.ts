@@ -1,12 +1,25 @@
 import { Role, User } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
 import { Prisma as PrismaService } from '../prisma';
-import { CreateUserDto } from 'src/dto/user.dto';
+import { CreateUserDto, EditPasswordDto } from 'src/dto/user.dto';
 //import { ROLE } from 'src/interfaces/auth.interface';
 
 @Injectable()
 export class UserRepository {
   constructor(private readonly prisma: PrismaService) {}
+
+  public async changePassword(data: EditPasswordDto): Promise<User | null> {
+    try {
+      return await this.prisma.user.update({
+        where: { id: data.id },
+        data: {
+          password: data.newPassword,
+        },
+      });
+    } catch {
+      return null;
+    }
+  }
 
   public async findByEmail(email: string): Promise<User | null> {
     const user = await this.prisma.user.findUnique({ where: { email } });
@@ -59,16 +72,13 @@ export class UserRepository {
 
   public async changeRole(idUser: number, role: Role): Promise<User | null> {
     try {
-      console.log(role); // Solo para verificar que estamos pasando el rol correctamente
       return this.prisma.user.update({
         where: { id: idUser },
         data: {
-          role: role, // Aquí asignamos el valor del role directamente
+          role: role,
         },
       });
-    } catch (error) {
-      // Manejo de errores más detallado
-      console.error('Error cambiando el rol:', error);
+    } catch {
       return null;
     }
   }

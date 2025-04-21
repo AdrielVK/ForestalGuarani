@@ -7,7 +7,12 @@ import {
 } from '../../interfaces/auth.interface';
 import { ResponseClass } from 'src/config/handless/response-class';
 import { UserRepository } from 'src/database/repository/user.repository';
-import { CreateUserDto, LoginUserDto } from 'src/dto/user.dto';
+import {
+  CreateUserDto,
+  EditPasswordDto,
+  EditPasswordRequestDto,
+  LoginUserDto,
+} from 'src/dto/user.dto';
 import { ResponseInterface } from 'src/interfaces/response.interface';
 import * as bcrypt from 'bcryptjs';
 import { Injectable } from '@nestjs/common';
@@ -21,6 +26,38 @@ export class AuthBussiness extends ResponseClass {
     private readonly authService: AuthService,
   ) {
     super();
+  }
+
+  public async changePassword(
+    data: EditPasswordRequestDto,
+  ): Promise<ResponseInterface<{ message: string }>> {
+    if (data.id !== data.reqUserId)
+      return this.badRequest('No tiene permisos para esta operacion');
+
+    const user = await this.userRepository.findById(data.id);
+
+    if (!user) return this.badRequest('Error, usuario inexistente');
+
+    const passwordValid: boolean = await bcrypt.compare(
+      data.oldPassword,
+      user.password,
+    );
+
+    if (!passwordValid)
+      return this.badRequest('Acceso rechazado, contrasena incorrecta');
+
+    const hashedPassword = await bcrypt.hash(data.newPassword, 10);
+
+    const secureData: EditPasswordDto = {
+      id: data.id,
+      newPassword: hashedPassword,
+    };
+
+    const updatedUser = await this.authService.changePassword(secureData);
+    if (!updatedUser)
+      return this.badRequest('Error al intentar cambiar la contrasena');
+
+    return this.success({ message: 'Contrasena actualizada exitosamente' });
   }
 
   public async createUser(
@@ -51,7 +88,6 @@ export class AuthBussiness extends ResponseClass {
     role: ROLE,
   ): Promise<ResponseInterface<{ message: string; response: IUser }>> {
     const response = await this.authService.changeRole(userId, role);
-    console.log(response);
     if (!response) return this.badRequest({ message: 'Error al cambiar rol' });
     return this.success({
       message: 'Cambio de rol exitoso',
@@ -64,7 +100,6 @@ export class AuthBussiness extends ResponseClass {
   ): Promise<ResponseInterface<ResponseLogin | string>> {
     const user = await this.userRepository.findByUsername(data.username);
     if (!user) {
-      console.log('email', user);
       return this.forbidden('No se encontro un usuario');
     }
     const passwordValid: boolean = await bcrypt.compare(

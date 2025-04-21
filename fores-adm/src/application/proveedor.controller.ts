@@ -9,6 +9,7 @@ import { ResponseInterface } from 'src/interfaces/response.interface';
 export class ProveedorController {
   constructor(private proveedorBussiness: ProveedorBussiness) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get('list')
   @UseGuards(JwtAuthGuard)
   public async listProveedores(): Promise<ResponseInterface<IProveedor[]>> {

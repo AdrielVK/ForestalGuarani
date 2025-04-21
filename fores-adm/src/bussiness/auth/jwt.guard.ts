@@ -32,7 +32,7 @@ export class JwtRoleAdminGuard extends AuthGuard('jwt') {
 
     if (user.role !== Role.ADMIN) {
       throw new ForbiddenException(
-        'Your role does not allow access to this resource',
+        'No tienes permisos para acceder a este recurso',
       );
     }
 
@@ -57,7 +57,7 @@ export class JwtRoleEditorGuard extends AuthGuard('jwt') {
 
     if (user.role === Role.READER) {
       throw new ForbiddenException(
-        'Your role does not allow access to this resource',
+        'No tienes permisos para acceder a este recurso',
       );
     }
 

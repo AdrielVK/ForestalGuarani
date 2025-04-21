@@ -32,6 +32,15 @@ import { PlanBuilder } from './plan_produccion/builders/plan.builder';
 import { PlanBussiness } from './plan_produccion/plan.bussines';
 import { ConsumoService } from './consumo/services/consumo.services';
 import { ConsumoBussiness } from './consumo/consumo.bussiness';
+import { PiezaService } from './pieza/pieza.service';
+import { EstadoService } from './estado/services/estado.service';
+import { EscuadriaService } from './escuadria/escuadria.service';
+import { PaqueteService } from './paquete/service/paquete.service';
+import { PaqueteBussiness } from './paquete/paquete.bussiness';
+import { PaqueteBuilder } from './paquete/builders/paquete.builder';
+import { CicloBusiness } from './ciclo/ciclo.business';
+import { CicloService } from './ciclo/services/ciclo.services';
+import { EstadoBusiness } from './estado/estado.business';
 
 const providers: Provider<any>[] = [
   AuthBussiness,
@@ -63,6 +72,20 @@ const providers: Provider<any>[] = [
   PlanBussiness,
   ConsumoService,
   ConsumoBussiness,
+
+  PiezaService,
+  EstadoService,
+  EscuadriaService,
+  PaqueteService,
+
+  PaqueteBussiness,
+  PaqueteBuilder,
+
+  CicloBusiness,
+  CicloService,
+
+  EstadoService,
+  EstadoBusiness,
 ];
 
 @Module({

@@ -15,6 +15,20 @@ export class EstadoRepository {
     }
   }
 
+  public async listOfValues(): Promise<string[] | null> {
+    try {
+      const results = await this.prisma.estado.findMany({
+        select: {
+          value: true,
+        },
+      });
+
+      return results.map((p) => p.value);
+    } catch {
+      return null;
+    }
+  }
+
   public async findByValue(value: string): Promise<Estado | null> {
     try {
       return await this.prisma.estado.findUnique({
@@ -33,10 +47,12 @@ export class EstadoRepository {
     }
   }
 
-  public async createPaquete(data: CreateEstadoDto): Promise<Estado | null> {
+  public async createEstado(data: CreateEstadoDto): Promise<Estado | null> {
     try {
       return this.prisma.estado.create({
-        data,
+        data: {
+          value: data.value,
+        },
       });
     } catch {
       return null;

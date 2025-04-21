@@ -22,7 +22,6 @@ export class ConsumoBussiness extends ResponseClass {
   > {
     try {
       const newConsumo = await this.consumoService.create(data);
-      console.log('nuevo consumo', newConsumo);
       if (!newConsumo) return this.badRequest('Error al crear consumo');
 
       const dataAssociate = {
@@ -32,11 +31,9 @@ export class ConsumoBussiness extends ResponseClass {
 
       const response =
         await this.consumoService.associateConsumoToPlan(dataAssociate);
-      console.log('response', response);
       const positionToConsume = await this.posicionService.findByEquipoId(
         newConsumo.equipo.id,
       );
-      console.log('positionToConsume', positionToConsume);
 
       if (!positionToConsume) {
         return this.badRequest('Error al obtner la posicion a consumir');
@@ -45,8 +42,6 @@ export class ConsumoBussiness extends ResponseClass {
       const consume = await this.posicionService.setFreePosicion(
         positionToConsume.id,
       );
-
-      console.log('consume', consume);
 
       if (!consume) {
         return this.badRequest('Error al intentar consumir la posicion');

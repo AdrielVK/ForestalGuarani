@@ -11,10 +11,18 @@ export class EscuadriaService {
     data: FindByPropsEscuadriaDto,
   ): Promise<IEscuadria | null> {
     try {
-      let escuadria = await this.escuadriaRepository.finByProps(data);
+      const escuadria = await this.escuadriaRepository.finByProps(data);
       if (!escuadria) {
-        escuadria = await this.escuadriaRepository.finByProps(data);
-        if (!escuadria) return null;
+        const newEscuadria =
+          await this.escuadriaRepository.createEscuadria(data);
+        if (!newEscuadria) return null;
+        return {
+          id: newEscuadria.id,
+          longitud: newEscuadria.longitud,
+          altura: newEscuadria.altura,
+          ancho: newEscuadria.ancho,
+        };
+      } else {
         return {
           id: escuadria.id,
           longitud: escuadria.longitud,

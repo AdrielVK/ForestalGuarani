@@ -9,7 +9,6 @@ export class ClienteService {
   public async getCliente(numero: string): Promise<ICliente | null> {
     try {
       const client = await this.clienteRepository.findClienteByNumero(numero);
-      console.log('cliente', client);
       if (!client) {
         return null;
       }

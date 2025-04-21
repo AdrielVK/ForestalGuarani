@@ -81,8 +81,7 @@ export class PlanService {
           espesor: esquema.espesor,
         },
       };
-    } catch (error) {
-      console.log(error);
+    } catch {
       return null;
     }
   }

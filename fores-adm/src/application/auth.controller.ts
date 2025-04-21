@@ -11,8 +11,14 @@ import {
 } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
 import { AuthBussiness } from 'src/bussiness/auth/auth.bussiness';
-import { JwtAuthGuard } from 'src/bussiness/auth/jwt.guard';
-import { ChangeRoleDto, CreateUserDto, LoginUserDto } from 'src/dto/user.dto';
+import { JwtAuthGuard, JwtRoleAdminGuard } from 'src/bussiness/auth/jwt.guard';
+import {
+  ChangeRoleDto,
+  CreateUserDto,
+  EditPasswordRequestControllerDto,
+  EditPasswordRequestDto,
+  LoginUserDto,
+} from 'src/dto/user.dto';
 import { ResponseInterface } from 'src/interfaces/response.interface';
 import {
   IUser,
@@ -25,6 +31,7 @@ export class AuthController {
   constructor(private authBussiness: AuthBussiness) {}
 
   @Get()
+  @UseGuards(JwtRoleAdminGuard)
   public async listUsers(): Promise<ResponseInterface<IUser[]>> {
     return await this.authBussiness.listUsers();
   }
@@ -37,10 +44,24 @@ export class AuthController {
   }
 
   @Post('register')
+  @UseGuards(JwtRoleAdminGuard)
   public async create(
     @Body(new ValidationPipe()) data: CreateUserDto,
   ): Promise<ResponseInterface<ResponseRegister>> {
     return await this.authBussiness.createUser(data);
+  }
+
+  @Patch('change/password')
+  @UseGuards(JwtAuthGuard)
+  public async changePassword(
+    @Body(new ValidationPipe()) data: EditPasswordRequestControllerDto,
+    @Req() req,
+  ): Promise<ResponseInterface<{ message: string }>> {
+    const completeData: EditPasswordRequestDto = {
+      ...data,
+      reqUserId: req.user.id,
+    };
+    return await this.authBussiness.changePassword(completeData);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -49,12 +70,12 @@ export class AuthController {
     return req.user;
   }
 
+  @UseGuards(JwtAuthGuard)
   @Patch('role/change/:id')
   public async changeRole(
     @Param('id', ParseIntPipe) userId,
     @Body(new ValidationPipe()) role: ChangeRoleDto,
   ): Promise<ResponseInterface<{ message: string; response: IUser }>> {
-    console.log(role);
     return await this.authBussiness.changeRole(userId, role.role);
   }
 }

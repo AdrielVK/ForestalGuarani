@@ -15,6 +15,14 @@ export class OrdenService {
     }
   }
 
+  public async listOrdenesFreeOfPaquete(): Promise<IOrden[] | null> {
+    try {
+      return await this.ordenRepository.listOrdenesFreeOfPaquete();
+    } catch {
+      return null;
+    }
+  }
+
   public async listOrdenes(): Promise<IOrden[] | null> {
     try {
       return await this.ordenRepository.listOrdenes();
