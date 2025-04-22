@@ -20,13 +20,14 @@ import ListaPaquetePage from "../Pages/Empalilladora/ListaPaquetePage"
 import AltaCicloPage from "../Pages/Secadero/AltaCicloPage"
 import ListaCicloPage from "../Pages/Secadero/ListaCicloPage"
 import CambiarContrasenaPage from "../Pages/Perfil/CambiarContrasena"
+import NotFoundPage from "../Pages/NotFound"
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/empalilladora/paquete/alta" element={<AltaPaquetePage/>}/>
       <Route path="/empalilladora/paquete/lista" element={<ListaPaquetePage/>}/>
-
+      <Route path="*" element={<NotFoundPage/>}/>
       <Route path="/ciclo/alta" element={<AltaCicloPage/>} />
       
       <Route path="/pedidos/lista" element={<ListPedidoPage/>} />
