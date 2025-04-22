@@ -173,7 +173,7 @@ const ListaIngresoPage: React.FC = () => {
         loading ? 
         <p>Cargando...</p>
         :
-        ingresosData && ingresosData.length > 0 && !loading ?
+        ingresosData.length > 0 ?
           
         ingresosData.map((ingreso, index) => (
           <IngresoListItem {...ingreso} key={index} />

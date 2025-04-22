@@ -285,7 +285,7 @@ const ListaPlanPage = () => {
           loading? 
           <p>Cargando..</p>
           :
-          dataRender.length > 0 && dataRender ? 
+          dataRender.length > 0 ? 
           (
             <div className="w-full">
               <section className="w-full grid md:grid-cols-2 grid-cols-1">
