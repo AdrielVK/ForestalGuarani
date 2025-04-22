@@ -38,7 +38,7 @@ const ListPedidoPage = () => {
 
   useEffect(() => {
     setPedidosData(pedidos)
-   
+    
   },[pedidos])
 
   const [pedidosData, setPedidosData] = useState<Pedido[]>(pedidos)
@@ -87,6 +87,9 @@ const ListPedidoPage = () => {
     setEmptyFilter(isEqual(filterState, primitiveFilter));
   }, [filterState]);
 
+  useEffect(() => {
+    console.log(data)
+  }, [data])
   
   const [emptyFilter, setEmptyFilter] = useState<boolean>(filterState === primitiveFilter)
 

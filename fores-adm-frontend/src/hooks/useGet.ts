@@ -19,7 +19,8 @@ export const useGet = <T>(url: string, reFetch?: boolean): Props<T> => {
       setLoading(true)
       try {
         const response = await api.get(url)
-        if(response.statusText.toUpperCase() === 'OK'){
+        console.log(response)
+        if(response.statusText.toUpperCase() === 'OK' || response.status === 200){
           setData(response.data.payload)
         }
       } catch {

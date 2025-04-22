@@ -73,7 +73,7 @@ const PedidoListItem: React.FC<Pedido> = ({ id, fecha, proveedor, equipos = [] }
             </div>
             
             {equipos.map((equipo, index) => (
-              <>
+              
                 <div key={index} className="mb-4 bg-gray-50 p-3 rounded-md">
                   <h4 className="text-md font-medium text-gray-700 mb-2">Equipo #{equipo.id}</h4>
                   {equipo.rolliso ? (
@@ -103,7 +103,7 @@ const PedidoListItem: React.FC<Pedido> = ({ id, fecha, proveedor, equipos = [] }
                     <p className="text-sm text-gray-500">No hay rollisos para este equipo.</p>
                   )}
                 </div>
-              </>
+              
             ))}
             <div className='w-20'>
               <ButtonDumb onClick={handleOpenModal} color={colors.danger} text='Eliminar' />
