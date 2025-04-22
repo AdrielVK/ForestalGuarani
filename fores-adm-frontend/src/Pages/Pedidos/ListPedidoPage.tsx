@@ -116,7 +116,7 @@ const ListPedidoPage = () => {
         {openModal && <PedidoFilterModal onClose={(e) => handleModal(e, false)} />}
         {loading ? (
           <p>Cargando...</p>
-        ) : !loading && pedidosData && pedidosData.length > 0 ? (
+        ) : !loading && pedidosData.length > 0 ? (
           <>
             <PedidoList pedidos={pedidosData} />
           </>
