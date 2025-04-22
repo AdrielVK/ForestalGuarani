@@ -4,7 +4,6 @@ import { INestApplication } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ConfigurationsInterface } from './interfaces/configuration.interface';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import * as bodyParser from 'body-parser';
 
 export let app: INestApplication;
 
@@ -27,8 +26,6 @@ async function bootstrap() {
     SwaggerModule.setup(configService.get('GLOBAL_PREFIX'), app, document);
   }
   app.enableCors();
-  app.use(bodyParser.json({ limit: '10mb' }));
-  app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
   await app.listen(configService.get('PORT'));
 }
 bootstrap();
