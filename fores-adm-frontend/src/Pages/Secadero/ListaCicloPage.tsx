@@ -28,12 +28,14 @@ const ListaCicloPage = () => {
   useEffect(() => {
     if (!data) return
     setCiclos(data)
-    setCicloData(ciclos)
+    setCicloData(data)
   }, [ciclos, data, reFetch])
 
   useEffect(() => {
     if (!isEqual(filter, defaultFilterCiclos)) {
-      setCicloData(filteredCiclos)
+      if (filteredCiclos.length > 0){
+        setCicloData(filteredCiclos)
+      }
     }
   },[filter, filteredCiclos])
 

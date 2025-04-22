@@ -44,7 +44,7 @@ const ListaIngresoPage: React.FC = () => {
   useEffect(() => {
     if (!data) return 
     setIngresos(data)
-    setIngresosData(ingresos)
+    setIngresosData(data)
     
     
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,9 +52,11 @@ const ListaIngresoPage: React.FC = () => {
 
   useEffect(() => {
     if (!isEqual(filter, defaultFilter)) {
-      setIngresosData(filteredIngresos)
+      if (filteredIngresos.length > 0) {
+        setIngresosData(filteredIngresos);
+      }
     }
-  },[filter, filteredIngresos, setIngresos])
+  }, [filter, filteredIngresos]);
 
   const [ingresosData, setIngresosData] = useState<IngresoDetail[]>(ingresos)
   

@@ -31,7 +31,7 @@ const ListPedidoPage = () => {
       setPedidos(data);
       resetFilteredPedidos() 
       setFilterState(primitiveFilter)
-      setPedidosData(pedidos)
+      setPedidosData(data)
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
@@ -53,7 +53,9 @@ const ListPedidoPage = () => {
   
   useEffect(() => {
     if (!isEqual(filterState, primitiveFilter)) {
-      setPedidosData(filteredPedidos)
+      if (filteredPedidos.length > 0) {
+        setPedidosData(filteredPedidos)
+      }
     }
   },[filterState, filteredPedidos])
 
@@ -87,9 +89,6 @@ const ListPedidoPage = () => {
     setEmptyFilter(isEqual(filterState, primitiveFilter));
   }, [filterState]);
 
-  useEffect(() => {
-    console.log(data)
-  }, [data])
   
   const [emptyFilter, setEmptyFilter] = useState<boolean>(filterState === primitiveFilter)
 
