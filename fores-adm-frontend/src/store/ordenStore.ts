@@ -5,6 +5,7 @@ export interface OrdenState {
   ordenList: Orden[];
   prevOrdenList: Orden[];
   reFetch: boolean;
+  ordenToEmpalilladora: Orden | null;
 }
 
 export type OrdenActions = {
@@ -16,7 +17,9 @@ export type OrdenActions = {
   removeFromPrevOrdenList: (id: number) => void;
 
   reFetchHandler: (value: boolean) => void;
+  addOrdenToEmpalilladora: (value: Orden) => void;
 
+  removeOrdenToEmpalilladora: () => void;
 };
 
 export type OrdenStore = OrdenActions & OrdenState;
@@ -25,6 +28,7 @@ export const InitialState: OrdenState = {
   ordenList: [],
   prevOrdenList: [],
   reFetch: false,
+  ordenToEmpalilladora: null,
 };
 
 export const useOrdenStore = create<OrdenStore>((set) => ({
@@ -35,7 +39,12 @@ export const useOrdenStore = create<OrdenStore>((set) => ({
   addToOrdenList: (value: Orden) => {
     set((state) => ({ ordenList: [...state.ordenList, value] }));
   },
-
+  addOrdenToEmpalilladora: (value: Orden) => {
+    set({ordenToEmpalilladora: value})
+  },
+  removeOrdenToEmpalilladora: () => {
+    set({ordenToEmpalilladora: null})
+  },
   resetOrdenList: () => {
     set({ ordenList: []})
   },

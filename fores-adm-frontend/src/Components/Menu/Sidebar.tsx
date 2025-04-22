@@ -5,6 +5,8 @@ import logo from '../../assets/logonombreblanco.webp';
 import { AuthStore, useAuthStore } from '../../store/authStore';
 import { menuItems } from '../../utils/items-links-constants';
 import Links from '../../utils/Links';
+import { TraslateRole } from '../../utils/traslate-role';
+import { ROLE } from '../../models/interfaces/auth.interfaces';
 
 
 
@@ -12,11 +14,7 @@ const SidebarMenu: React.FC = () => {
   const user = useAuthStore((state:AuthStore) => state.user);
   const logout = useAuthStore((state:AuthStore) => state.logout);
   const navigate = useNavigate();
-  //const [expandedItems, setExpandedItems] = useState<{ [key: string]: boolean }>({});
   
-  /*const toggleItem = (title: string) => {
-    setExpandedItems(prev => ({ ...prev, [title]: !prev[title] }));
-  };*/
 
   const handleLogout = async () => {
     await logout()
@@ -33,7 +31,7 @@ const SidebarMenu: React.FC = () => {
       </figure>
       <div className='mx-6 flex-wrap flex space-x-2 bg-white rounded-sm justify-center items-center'>
         <p className='text-lime-600 items-center'>{user?.username}</p>
-        <p className='text-lime-600 items-center font-semibold'>{user?.role}</p>
+        <p className='text-lime-600 items-center font-semibold'>{TraslateRole(user?.role || ROLE.READER)}</p>
       </div>
       {
         user &&

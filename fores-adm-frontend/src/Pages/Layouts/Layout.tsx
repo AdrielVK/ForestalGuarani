@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
 import SidebarMenu from '../../Components/Menu/Sidebar';
 import MobileNavbar from '../../Components/Menu/Navbar';
+import LayoutSkeleton from '../../Components/Skeletons/LayoutSkeleton';
 
 export default function Layout({
   children,
@@ -24,9 +25,7 @@ export default function Layout({
 
   if (fetchUserLoading) {
     return (
-      <main className='antialiased '>
-        Cargando...
-      </main>
+      <LayoutSkeleton/>
     );
   }
 

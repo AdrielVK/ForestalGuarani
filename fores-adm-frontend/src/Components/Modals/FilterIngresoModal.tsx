@@ -15,7 +15,6 @@ const FilterIngresoModal = ({
 
   const validateSearch = (startDate: string, endDate: string): boolean => {
     if (startDate === "" || endDate === "") return false
-    console.log("inicio", parseISO(startDate), "fin", parseISO(endDate))
     return parseISO(startDate) >= parseISO(endDate)
   }
 

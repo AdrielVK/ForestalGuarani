@@ -23,3 +23,16 @@ export interface ICreateUser {
   username: string,
   password: string,
 }
+
+export interface ChangePasswordRequest {
+  oldPassword: string;
+  id: number;
+  newPassword: string;
+}
+
+export interface ChangePasswordState {
+  password: string;
+
+  newPassword: string;
+  reNewPassword: string;
+}

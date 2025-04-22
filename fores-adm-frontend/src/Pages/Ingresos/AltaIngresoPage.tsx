@@ -131,22 +131,19 @@ const AltaIngresoPage: React.FC = () => {
         milliseconds: 0,
       })
     }
-    console.log(formattedIngreso)
-    try {
-      await post(formattedIngreso);
-      setIngreso({
-        proveedorName: '',
-        fuente_controlada: false,
-        fecha: new Date().toISOString().split('T')[0],
-        chofer: '',
-        patente: '',
-        peso: 0,
-        equipos: [{tipo:'', diametro:0, longitud:0, posicion:0}]
-      })
-      setReFetchPos(!reFetchPos)
-    } catch (error) {
-      console.log(error)
-    }
+    
+    await post(formattedIngreso);
+    setIngreso({
+      proveedorName: '',
+      fuente_controlada: false,
+      fecha: new Date().toISOString().split('T')[0],
+      chofer: '',
+      patente: '',
+      peso: 0,
+      equipos: [{tipo:'', diametro:0, longitud:0, posicion:0}]
+    })
+    setReFetchPos(!reFetchPos)
+    
   }
 
   return(
@@ -233,7 +230,7 @@ const AltaIngresoPage: React.FC = () => {
         
         <div className="mb-4">
           <Input 
-            type="text"
+            type="number"
             id="peso"
             name="peso"
             value={ingreso.peso}

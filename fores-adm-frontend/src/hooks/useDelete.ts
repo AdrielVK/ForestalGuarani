@@ -20,7 +20,7 @@ export const useDelete = <T>(url: string): Props<T> => {
       setDeleteError(null); 
       try {
         const response = await api.delete(url);
-        console.log("delete response", response)
+
         if (response.status === 200) {
           setDeleteResponse(response.data.payload);
         } else {

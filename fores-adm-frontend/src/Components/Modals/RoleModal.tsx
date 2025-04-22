@@ -19,7 +19,6 @@ interface reqRole {
 
 const ChangeRoleModal = ({idUser, role, name, onClose}: Props) => {
   const reFetchValue = useAuthStore((state:AuthStore) => state.reFetchUsers)
-  console.log(reFetchValue)
 
   const [fetch, setFetch] = useState<boolean>(reFetchValue)
 
@@ -28,7 +27,6 @@ const ChangeRoleModal = ({idUser, role, name, onClose}: Props) => {
   
   useEffect(() => {
     if (patchResponse) {
-      console.log("patchResponse ha cambiado", patchResponse);
       reFetch(!fetch);
       setFetch(!fetch);
       onClose();

@@ -39,7 +39,6 @@ const CrearPedidoPage: React.FC = () => {
       setPedido({ ...pedido, [name]: value });
       setShowSuggestions(true);
     } else {
-      console.log(value)
       setPedido({ ...pedido, [name]: value });
     }
   };
@@ -91,7 +90,6 @@ const CrearPedidoPage: React.FC = () => {
     };
   
     try {
-      console.log('Enviando pedido:', formattedPedido);
       await post(formattedPedido);
       setPedido({
         proveedor_nombre: '',

@@ -15,10 +15,20 @@ import ListaPlanPage from "../Pages/Planes/ListaPlanPage"
 import AltaOrdenProdPage from "../Pages/Ordenes/AltaOrdenProdPage"
 import DetallePlanPage from "../Pages/Planes/DetallePlanPage"
 import ListaOrdenPage from "../Pages/Ordenes/ListaOrdenPage"
+import AltaPaquetePage from "../Pages/Empalilladora/AltaPaquetePage"
+import ListaPaquetePage from "../Pages/Empalilladora/ListaPaquetePage"
+import AltaCicloPage from "../Pages/Secadero/AltaCicloPage"
+import ListaCicloPage from "../Pages/Secadero/ListaCicloPage"
+import CambiarContrasenaPage from "../Pages/Perfil/CambiarContrasena"
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
+      <Route path="/empalilladora/paquete/alta" element={<AltaPaquetePage/>}/>
+      <Route path="/empalilladora/paquete/lista" element={<ListaPaquetePage/>}/>
+
+      <Route path="/ciclo/alta" element={<AltaCicloPage/>} />
+      
       <Route path="/pedidos/lista" element={<ListPedidoPage/>} />
       <Route path="/pedidos/alta" element={<CrearPedidoPage/>}/>
       <Route path="/" element={<Home/>} />
@@ -35,6 +45,9 @@ export const router = createBrowserRouter(
       <Route path="/orden/alta" element={<AltaOrdenProdPage/>}/>
       <Route path="/plan/detalle/:id" element={<DetallePlanPage />} />
       <Route path="/orden/lista" element={<ListaOrdenPage />} />
+      <Route path="/ciclo/lista" element={<ListaCicloPage/>}/>
+
+      <Route path="perfil/contrasena" element={<CambiarContrasenaPage/>}/>
     </>
   )
 )

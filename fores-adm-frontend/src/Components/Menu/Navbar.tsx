@@ -5,6 +5,7 @@ import logo from '../../assets/logonombreblanco.webp';
 import { AuthStore, useAuthStore } from '../../store/authStore';
 import { menuItems } from '../../utils/items-links-constants';
 import Links from '../../utils/Links';
+import { TraslateRole } from '../../utils/traslate-role';
 
 
 const MobileNavbar: React.FC = () => {
@@ -34,15 +35,15 @@ const MobileNavbar: React.FC = () => {
         </button>
       </div>
 
-      {isMenuOpen && (
+      {isMenuOpen && user && (
         <div className="fixed inset-0 bg-lime-600 text-white z-40 mt-16 overflow-y-auto">
           <div className='mx-6 flex-wrap flex space-x-2 bg-white rounded-sm justify-center items-center'>
-          <p className='text-lime-600 items-center'>{user?.username}</p>
-          <p className='text-lime-600 items-center font-semibold'>{user?.role}</p>
+          <p className='text-lime-600 items-center'>{user.username}</p>
+          <p className='text-lime-600 items-center font-semibold'>{TraslateRole(user.role)}</p>
         </div>
           {
             user &&
-            <Links toogleMenu={toggleMenu} staticLinks={menuItems} userRole={user?.role} />
+            <Links toogleMenu={toggleMenu} staticLinks={menuItems} userRole={user.role} />
           }
           
           <button

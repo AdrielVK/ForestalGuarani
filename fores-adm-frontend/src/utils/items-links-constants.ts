@@ -6,17 +6,29 @@ export interface MenuItem {
 
 export const menuItems: MenuItem[] = [
   {
+    title: 'Perfil',
+    links: [
+      { name: 'Cambiar contraseña', href: '/perfil/contrasena' },
+    ],
+  },
+  {
     title: 'Pedidos',
     links: [
-      { name: 'Alta', href: '/pedidos/alta' },
-      { name: 'Listado', href: '/pedidos/lista' },
+      { name: 'Crear nuevo', href: '/pedidos/alta' },
+      { name: 'Ver listado', href: '/pedidos/lista' },
     ],
   },
   {
     title: 'Ingresos',
     links: [
-      { name: 'Alta', href: '/ingresos/alta' },
-      { name: 'Lista', href: '/ingresos/lista' },
+      { name: 'Crear nuevo', href: '/ingresos/alta' },
+      { name: 'Ver listado', href: '/ingresos/lista' },
+    ],
+  },
+  {
+    title: 'Acopio',
+    links: [
+      { name: 'Ver posiciones', href: '/acopio/posiciones' },
     ],
   },
   {
@@ -29,15 +41,32 @@ export const menuItems: MenuItem[] = [
   {
     title: 'Planes de produccion',
     links: [
-      { name: 'Nuevo plan', href: '/plan/alta' },
-      { name: 'Lista', href: '/plan/lista' },
+      { name: 'Crear nuevo', href: '/plan/alta' },
+      { name: 'Ver listado', href: '/plan/lista' },
     ],
   },
   {
     title: 'Orden de produccion',
     links: [
-      { name: 'Nuevo', href: '/orden/alta' },
-      { name: 'Lista', href: '/orden/lista' },
+      { name: 'Crear nuevo', href: '/orden/alta' },
+      { name: 'Ver lista', href: '/orden/lista' },
     ],
+    
+  },
+  {
+    title: 'Empalilladora',
+    links: [
+      { name: 'Ingresar paquete', href: '/empalilladora/paquete/alta' },
+      { name: 'Ver paquetes ingresados', href: '/empalilladora/paquete/lista' },
+    ],
+    
+  },
+  {
+    title: 'Secadero',
+    links: [
+      { name: 'Crear nuevo ciclo de secado', href: '/ciclo/alta' },
+      { name: 'Ver listado de ciclos', href: '/ciclo/lista' },
+    ],
+    
   },
 ];

@@ -81,30 +81,7 @@ function Links ({staticLinks, toogleMenu, userRole}: Props) {
               </div>
             )}
           </div>
-          <div className="mb-2" key={"acopio"}>
-            <button
-              onClick={() => toggleItem("acopio")}
-              className="flex items-center font-semibold justify-between w-full p-2 hover:bg-lime-700 transition-colors duration-200"
-            >
-              <span>
-                Acopio
-              </span>
-              {expandedItems["acopio"] ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-            </button>
-            {expandedItems["acopio"] && (
-              <div className="ml-4">
-                
-                <Link
-                  key={"acopio/posiciones"}
-                  to={"/acopio/posiciones"}
-                  className="block p-2 hover:bg-lime-700 transition-colors duration-200"
-                  onClick={toogleMenu}
-                >
-                  Posiciones
-                </Link>
-              </div>
-            )}
-          </div>
+          
         </>
         
       }

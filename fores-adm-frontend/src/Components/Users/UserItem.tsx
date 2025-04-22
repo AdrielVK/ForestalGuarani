@@ -3,6 +3,7 @@ import { User as IUser } from '../../models/interfaces/auth.interfaces';
 import ButtonDumb from '../ui/ButtonDumb';
 import { useState } from 'react';
 import ChangeRoleModal from '../Modals/RoleModal';
+import { TraslateRole } from '../../utils/traslate-role';
 
 interface Props {
   data: IUser;
@@ -29,7 +30,7 @@ const UserListItem = ( {data, key} : Props) => {
         </div>
         <div className="flex items-center space-x-2">
           <Shield className={`w-5 h-5 ${data.role === 'ADMIN' ? 'text-red-500' : 'text-blue-500'}`} />
-          <span className="text-sm font-medium text-gray-700">{data.role}</span>
+          <span className="text-sm font-medium text-gray-700">{TraslateRole(data.role) }</span>
         </div>
         <span className='flex justify-center items-center space-x-1'>
           <Mail className="w-4 h-4 text-gray-400" />

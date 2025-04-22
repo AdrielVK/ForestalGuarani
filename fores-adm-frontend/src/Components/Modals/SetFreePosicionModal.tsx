@@ -22,12 +22,7 @@ const SetFreePosicionModal = ({id, identificador ,onClose}: Props) => {
   const handlePatch = async (e:React.MouseEvent) => {
     e.stopPropagation()
     await patch(undefined)
-    
-    console.log("antes1", reFetchFlag)
     switchReFetchFlag(!reFetchFlag)
-    console.log("2", reFetchFlag)
-    
-
   }
 
   return (

@@ -62,34 +62,31 @@ const AltaPlanPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.stopPropagation()
     e.preventDefault()
-    try {
-      const res = await post({
-        ...plan,
-        fecha_inicio: new Date(plan.fecha_inicio),
-        fecha_fin: new Date(plan.fecha_fin)
-      });
-      if (res) {
-        for (const ord of ordenList) {
-          await postOrden({planId:res.id, ordenId:ord.id})
-        }
+    
+    const res = await post({
+      ...plan,
+      fecha_inicio: new Date(plan.fecha_inicio),
+      fecha_fin: new Date(plan.fecha_fin)
+    });
+    if (res) {
+      for (const ord of ordenList) {
+        await postOrden({planId:res.id, ordenId:ord.id})
       }
-      if (res ) {
-        const dateToConsumo = new Date(obtenerFechaHora())
-        for (const consumo of consumoList) {
-          
-          const data:CreateConsumoBody = {
-            fecha: dateToConsumo,
-            planId: res.id,
-            equipoId: consumo.equipo.id,
-          }
-          
-          console.log("consumo data", data)
-          await postConsumo(data)
-        }
-      }
-    } catch(error) {
-      console.log(error)
     }
+    if (res ) {
+      const dateToConsumo = new Date(obtenerFechaHora())
+      for (const consumo of consumoList) {
+        
+        const data:CreateConsumoBody = {
+          fecha: dateToConsumo,
+          planId: res.id,
+          equipoId: consumo.equipo.id,
+        }
+        
+        await postConsumo(data)
+      }
+    }
+    
 
     setPlan({
       fecha_inicio:  obtenerFechaHora(),

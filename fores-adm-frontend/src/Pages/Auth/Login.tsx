@@ -36,7 +36,6 @@ export default function LoginForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submitr")
     await login(formData);
     if(isAuth){
       navigate('/')

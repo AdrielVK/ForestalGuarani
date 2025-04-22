@@ -32,7 +32,6 @@ export const Interceptor = () => {
     (error) => {
       if (error.status !== 401){
         const msg: string | null = error.response.data.message || null
-        console.log("error response", error)
         SnackbarUtilities.error(getValidationError(error.code, msg))
       }
           

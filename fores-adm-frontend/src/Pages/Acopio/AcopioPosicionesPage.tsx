@@ -27,11 +27,6 @@ const PosicionesPage = () => {
   
   const {data, loading} = useGet<Posicion[]>('posicion/list', reFetch);
   
-  //const [dataRender, setDataRender] = useState<Posicion[]>(data ? data : [])
-
-  useEffect(() => {
-    console.log(reFetch)
-  },[reFetchFlag, reFetch])
 
   useEffect(() => {
     setReFetch((prev) => !prev)

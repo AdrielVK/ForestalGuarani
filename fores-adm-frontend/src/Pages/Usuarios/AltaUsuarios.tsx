@@ -30,15 +30,13 @@ function AltaUsuariosPage () {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    try {
-      if (rePass === user.password){
-        await post(user)
-      } else {
-        setError('Las contrasenas deben coincidir')
-      }
-    } catch(error) {
-      console.log(error)
+    
+    if (rePass === user.password){
+      await post(user)
+    } else {
+      setError('Las contrasenas deben coincidir')
     }
+    
   }
 
   const {postLoading, post} = usePost<User, Omit<ICreateUser, 'email'>>('auth/register');
