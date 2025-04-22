@@ -21,11 +21,7 @@
     "react-router-dom": "^7.1.1",
     "react-spinners": "^0.15.0",
     "react-switch": "^7.1.0",
-    "zustand": "^5.0.2",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "zustand": "^5.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
