@@ -12,6 +12,19 @@ export const menuItems: MenuItem[] = [
     ],
   },
   {
+    title: 'Acopio',
+    links: [
+      { name: 'Ver posiciones', href: '/acopio/posiciones' },
+    ],
+  },
+  {
+    title: 'Stock',
+    links: [
+      { name: 'Ver por posiciones', href: '/stock/posicion' },
+      { name: 'Ver por equipo', href: '/stock/equipo' },
+    ],
+  },
+  {
     title: 'Pedidos',
     links: [
       { name: 'Crear nuevo', href: '/pedidos/alta' },
@@ -23,19 +36,6 @@ export const menuItems: MenuItem[] = [
     links: [
       { name: 'Crear nuevo', href: '/ingresos/alta' },
       { name: 'Ver listado', href: '/ingresos/lista' },
-    ],
-  },
-  {
-    title: 'Acopio',
-    links: [
-      { name: 'Ver posiciones', href: '/acopio/posiciones' },
-    ],
-  },
-  {
-    title: 'Stock',
-    links: [
-      { name: 'Ver por posiciones', href: '/stock/posicion' },
-      { name: 'Ver por equipo', href: '/stock/equipo' },
     ],
   },
   {
