@@ -149,7 +149,7 @@ const CrearPedidoPage: React.FC = () => {
 
         {pedido.rollisos.map((rolliso, index) => (
           <div key={index} className="mb-6 p-4 border border-gray-200 rounded-md">
-            <h3 className="text-lg font-semibold mb-2">Rolliso {index + 1}</h3>
+            <h3 className="text-lg font-semibold mb-2">Rollizo {index + 1}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Input 
                 label='Tipo'
@@ -197,7 +197,7 @@ const CrearPedidoPage: React.FC = () => {
                 onClick={() => removeRolliso(index)}
                 className="mt-2 px-2 py-1 text-sm text-red-600 hover:text-red-800"
               >
-                Eliminar Rolliso
+                Eliminar Rollizo
               </button>
             )}
           </div>
@@ -209,7 +209,7 @@ const CrearPedidoPage: React.FC = () => {
             onClick={addRolliso}
             className="px-4 py-2 bg-lime-500 text-white rounded hover:bg-lime-600"
           >
-            Agregar Rolliso
+            Agregar Rollizo
           </button>
         </div>
 

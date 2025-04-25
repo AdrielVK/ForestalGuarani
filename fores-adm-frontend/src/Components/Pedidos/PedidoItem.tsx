@@ -69,7 +69,7 @@ const PedidoListItem: React.FC<Pedido> = ({ id, fecha, proveedor, equipos = [] }
           <div className="mt-4">
             <div className="grid grid-cols-2 gap-2 mb-4">
               <p className="text-sm text-gray-700">Total equipos: {equipos.length}</p>
-              <p className="text-sm text-gray-700">Total rollisos: {totalRollisos}</p>
+              <p className="text-sm text-gray-700">Total rollizos: {totalRollisos}</p>
             </div>
             
             {equipos.map((equipo, index) => (
@@ -100,7 +100,7 @@ const PedidoListItem: React.FC<Pedido> = ({ id, fecha, proveedor, equipos = [] }
                       </table>
                     </div>
                   ) : (
-                    <p className="text-sm text-gray-500">No hay rollisos para este equipo.</p>
+                    <p className="text-sm text-gray-500">No hay rollizos para este equipo.</p>
                   )}
                 </div>
               

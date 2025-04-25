@@ -72,7 +72,7 @@ const FilterModal = ({ onClose }: { onClose: (e: React.MouseEvent<HTMLButtonElem
           />
 
           <Input 
-            label='Tipo de rolliso'
+            label='Tipo de rollizo'
             id="tipo"
             name="tipo" 
             value={localFilters.tipo || ''}
@@ -80,7 +80,7 @@ const FilterModal = ({ onClose }: { onClose: (e: React.MouseEvent<HTMLButtonElem
           />
 
           <Input 
-            label='Longitud de rolliso'
+            label='Longitud de rollizo'
             id="longitud"
             name="longitud" 
             value={localFilters.longitud || ''}
@@ -88,7 +88,7 @@ const FilterModal = ({ onClose }: { onClose: (e: React.MouseEvent<HTMLButtonElem
           />
 
           <Input 
-            label='Diametro de rolliso'
+            label='Diametro de rollizo'
             id="diametro"
             name="diametro" 
             value={localFilters.diametro || ''}

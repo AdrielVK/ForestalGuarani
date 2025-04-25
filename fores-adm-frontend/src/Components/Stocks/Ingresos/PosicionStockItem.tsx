@@ -13,7 +13,7 @@ const PosicionStockItem = ( data : PosicionStock) => {
           </div>
           <div className="flex items-center space-x-2 my-2">
             <Tree className="w-5 h-5 text-lime-700" />
-            <h3 className="text-lg font-semibold text-gray-800">Rolliso Tipo: {data.equipo.rolliso.tipo || "No especificado"}</h3>
+            <h3 className="text-lg font-semibold text-gray-800">Rollizo Tipo: {data.equipo.rolliso.tipo || "No especificado"}</h3>
           </div>
           <div className="flex space-x-4 flex-wrap my-2">
             <p className="text-sm text-gray-600">Longitud: {data.equipo.rolliso.longitud || "N/A"}</p>

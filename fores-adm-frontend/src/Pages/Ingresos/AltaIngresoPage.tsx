@@ -299,7 +299,7 @@ const AltaIngresoPage: React.FC = () => {
                 onClick={() => removeEquipo(index)}
                 className="mt-2 px-2 py-1 text-sm text-red-600 hover:text-red-800"
               >
-                Eliminar Rolliso
+                Eliminar Rollizo
               </button>
             )}
             </div>
