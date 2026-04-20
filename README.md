@@ -16,6 +16,6 @@ Privada, con accesibilidad universal y de contribucion colaborativa a la consist
 
 ## 🛠 Stack
 
-**Frontend:** React, Redux, TypeScript, Tailwind, Zustand 
+**Frontend:** React, TypeScript, Tailwind, Zustand 
 **Backend:** NestJS, JWT, TypeScript  
 **Base de datos:** PostgreSQL  
